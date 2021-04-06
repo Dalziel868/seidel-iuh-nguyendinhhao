@@ -5,192 +5,54 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SeiDel-IUH</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <style>
-        form {
-            text-align: center;
-            margin-top: 3%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        #btnSubmit {
-            margin-top: 2%;
-            width: 10%;
-            margin-right: auto;
-            margin-left: 38%;
-            margin-bottom: 2%;
-        }
-    </style>
+    
 </head>
 
 <body>
     <div style="margin-left: auto; margin-right: auto; margin-top: 3%;">
         <h2 style="text-align: center; color: green;">Giải hệ phương trình Ax=b bằng phương pháp Seidel</h1>
     </div>
-
-    <form>
-        <div class="row">
-            <div class="col-2"><label style="font-size: 18px;">Phương trình 1: </label></div>
-            <div class="col-2">
-                <input type="text"  name="f1" class="form-control-lg" placeholder="X1">
-            </div>
-
-            <div class="col-2">
-                <input type="text"  name="f1" class="form-control-lg" placeholder="Y1">
-            </div>
-
-            <div class="col-2">
-                <input type="text"  name="f1" class="form-control-lg" placeholder="Z1">
-            </div>
-            <div class="col-2">
-                <input type="text"  name="f1" class="form-control-lg" placeholder="H1">
-            </div>
+<div class="row m-2 text-center">
+        <div class="col-12">
+            <label class="col-sm-3 col-lg-1 col-md-1">Số biến:</label> <input type="number" value="3" min='3' id="txtNumber" class="col-sm-6 col-md-3 col-lg-3" placeholder="Số lượng biến..." />
+            <button type="button" class="btn btn-block btn-primary" id="btnCreate">Tạo</button>
         </div>
 
-        <div class="row">
-            <div class="col-2"><label style="font-size: 18px;">Phương trình 2: </label></div>
-            <div class="col-2">
-                <input type="text"  name="f2" class="form-control-lg" placeholder="X2">
-            </div>
+    </div>
+    <div id="elements" class="container">
 
-            <div class="col-2">
-                <input type="text"  name="f2" class="form-control-lg" placeholder="Y2">
-            </div>
+    </div>
+    <div class="container">
+        <div class="row m-2">
+            <div class="col-12">
+                <p>Bước lặp:</p><input type="number" value="1" min="1" class="col-md-3 col-lg-2 col-sm-6" id="txtSobuoclap" />
 
-            <div class="col-2">
-                <input type="text"  name="f2" class="form-control-lg" placeholder="Z2">
-            </div>
-
-            <div class="col-2">
-                <input type="text"  name="f2" class="form-control-lg" placeholder="H2">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-2"><label style="font-size: 18px;">Phương trình 3: </label></div>
-            <div class="col-2">
-                <input type="text"  name="f3" class="form-control-lg" placeholder="X3">
-            </div>
-
-            <div class="col-2">
-                <input type="text"  name="f3" class="form-control-lg" placeholder="Y3">
-            </div>
-
-            <div class="col-2">
-                <input type="text"  name="f3" class="form-control-lg" placeholder="Z3">
-            </div>
-
-            <div class="col-2">
-                <input type="text"  name="f3" class="form-control-lg" placeholder="H3">
             </div>
         </div>
         <div class="row">
-            <div class="col-2"><label style="font-size: 18px;">Đánh giá sai số:</label></div>
-            <div class="col-2">
-                <input type="number" id="txtSaiSo" min="1" class="form-control-lg" placeholder="Bước lặp">
+            <div class="col text-center">
+                <button class="btn btn-danger mt-2" id="btnSubmit">Submit</button>
             </div>
-        </div>
-        <div class="row">
-            <button id="btnSubmit" onclick="submitFrm()" type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
-        </div>
-
-    </form>
-    <div style="margin-left:5%; float: left;">
-        <h5>Ma trận B:</h5>
-        <div class="row">
-            <input class="col-3" name="b1" type="text" readonly="readonly" />
-            <input class="col-3" name="b1" type="text" readonly="readonly" />
-            <input class="col-3" name="b1" type="text" readonly="readonly" />
-        </div>
-        <div class="row">
-            <input class="col-3" name="b2" type="text" readonly="readonly" />
-            <input class="col-3" name="b2" type="text" readonly="readonly" />
-            <input class="col-3" name="b2" type="text" readonly="readonly" />
-        </div>
-        <div class="row">
-            <input class="col-3" name="b3" type="text" readonly="readonly" />
-            <input class="col-3" name="b3" type="text" readonly="readonly" />
-            <input class="col-3" name="b3" type="text" readonly="readonly" />
         </div>
     </div>
-
-    <div style="margin-left: 5%;">
-        <h5>Ma trận g:</h5>
-        <div class="row">
-            <input class="col-3" id="g1" type="text" readonly="readonly" />
-        </div>
-        <div class="row">
-            <input class="col-3" id="g2" type="text" readonly="readonly" />
-        </div>
-        <div class="row">
-            <input class="col-3" id="g3" type="text" readonly="readonly" />
-        </div>
+    <div class="row mt-4">
+        <p class="text-primary text-center" id="txtChuanDong"></p>
+        <p class="text-primary text-center" id="txtSaiSo"></p>
     </div>
-
-    <div style="margin-top:2%;margin-left:5%; float: left;">
-        <h5>Ma trận (I-L):</h5>
-        <div class="row">
-            <input class="col-3" name="i1" type="text" readonly="readonly" />
-            <input class="col-3" name="i1" type="text" readonly="readonly" />
-            <input class="col-3" name="i1" type="text" readonly="readonly" />
-        </div>
-        <div class="row">
-            <input class="col-3" name="i2" type="text" readonly="readonly" />
-            <input class="col-3" name="i2" type="text" readonly="readonly" />
-            <input class="col-3" name="i2" type="text" readonly="readonly" />
-        </div>
-        <div class="row">
-            <input class="col-3" name="i3" type="text" readonly="readonly" />
-            <input class="col-3" name="i3" type="text" readonly="readonly" />
-            <input class="col-3" name="i3" type="text" readonly="readonly" />
-        </div>
-    </div>
-
-    <div style="margin-top:2%; margin-left:5%;">
-        <h5>Ma trận U:</h5>
-        <div class="row">
-            <input class="col-3" name="u1" type="text" readonly="readonly" />
-            <input class="col-3" name="u1" type="text" readonly="readonly" />
-            <input class="col-3" name="u1" type="text" readonly="readonly" />
-        </div>
-        <div class="row">
-            <input class="col-3" name="u2" type="text" readonly="readonly" />
-            <input class="col-3" name="u2" type="text" readonly="readonly" />
-            <input class="col-3" name="u2" type="text" readonly="readonly" />
-        </div>
-        <div class="row">
-            <input class="col-3" name="u3" type="text" readonly="readonly" />
-            <input class="col-3" name="u3" type="text" readonly="readonly" />
-            <input class="col-3" name="u3" type="text" readonly="readonly" />
-        </div>
-    </div>
-    <p style="margin-left: 5%; margin-top: 2%; color: red; font-weight: bold;" id="txtChuanDong"></p>
-    <p style="margin-left: 5%; margin-top: 1%; color: red; font-weight: bold;" id="txtDinhThuc"></p>
-    <p style="margin-left: 5%; margin-top: 1%; color: red; font-weight: bold;" id="txtFinalRs"></p>
+   
     <table class="table container" id="tblShow">
         <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">X</th>
-                <th scope="col">Y</th>
-                <th scope="col">Z</th>
-            </tr>
+            
         </thead>
         <tbody>
-            <!-- <tr>
-                <th scope="row">1</th>
-                <td>1.200</td>
-                <td>1.0800</td>
-                <td>0.72000</td>
-            </tr> -->
+           
 
         </tbody>
     </table>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+   
     <script src="./js/site.js" type="text/javascript"></script>
 </body>
 
